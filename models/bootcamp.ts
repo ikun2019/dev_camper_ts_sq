@@ -1,11 +1,12 @@
 'use strict';
-const { Model } = require('sequelize');
+
+import { Sequelize, Model, DataTypes } from 'sequelize';
 
 interface BootcampAttributes {
 	name: string;
 }
 
-module.exports = (sequelize: any, DataTypes: any) => {
+module.exports = (sequelize: Sequelize, dataTypes: typeof DataTypes) => {
 	class Bootcamp extends Model<BootcampAttributes> implements BootcampAttributes {
 		name!: string;
 		static associate(models: any) {
@@ -14,7 +15,7 @@ module.exports = (sequelize: any, DataTypes: any) => {
 	}
 	Bootcamp.init(
 		{
-			name: DataTypes.STRING,
+			name: dataTypes.STRING,
 		},
 		{
 			sequelize,

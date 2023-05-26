@@ -1,13 +1,17 @@
 import { buildSchema } from 'graphql';
 
 export default buildSchema(`
-  type TestData {
+  """Type"""
+  type Bootcamp {
     text: String
   }
 
+  """Methods"""
   type RootQuery {
-    hello: TestData
+    getBootcamps: Bootcamp
   }
+
+  """Schema"""
   schema {
     query: RootQuery
   }
