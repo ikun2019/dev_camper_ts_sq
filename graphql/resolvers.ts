@@ -32,6 +32,19 @@ export default {
 			console.log(err);
 		}
 	},
+	updateBootcamp: async (args: any, req: Request) => {
+		try {
+			const bootcampId = args.id;
+			const bootcamp = await db.Bootcamp.findOne({
+				where: { id: bootcampId },
+			});
+			bootcamp.text = args.bootcampInput.text;
+			const updateBootcamp = await bootcamp.save();
+			return updateBootcamp;
+		} catch (err) {
+			console.log(err);
+		}
+	},
 	deleteBootcamp: async (args: any, req: Request) => {
 		try {
 			const bootcampId = args.id;
