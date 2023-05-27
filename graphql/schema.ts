@@ -3,12 +3,14 @@ import { buildSchema } from 'graphql';
 export default buildSchema(`
   """Type"""
   type Bootcamp {
-    text: String
+    id: ID!
+    text: String!
   }
 
-  """Methods"""
+  """Root Query"""
   type RootQuery {
     getBootcamps: Bootcamp
+    getBootcamp(id: ID!): Bootcamp
   }
 
   """Schema"""

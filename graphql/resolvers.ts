@@ -11,4 +11,17 @@ export default {
 			console.error(err);
 		}
 	},
+	getBootcamp: async (args: any, req: Request) => {
+		try {
+			const bootcampId: String = args.id;
+			const bootcamp = await db.Bootcamp.findOne({
+				where: { id: bootcampId },
+			});
+			return {
+				...bootcamp,
+			};
+		} catch (err) {
+			console.log(err);
+		}
+	},
 };
