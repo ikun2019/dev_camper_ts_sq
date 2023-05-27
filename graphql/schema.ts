@@ -6,11 +6,21 @@ export default buildSchema(`
     id: ID!
     text: String!
   }
+  type User {
+    id: ID!
+    name: String!
+    email: String!
+    password: String!
+  }
   
-
   """Input Data"""
   input bootcampInputData {
     text: String!
+  }
+  input userInputData {
+    name: String!
+    email: String!
+    password: String!
   }
 
   """Root Query"""
@@ -22,6 +32,7 @@ export default buildSchema(`
     createBootcamp(bootcampInput: bootcampInputData): Bootcamp!
     updateBootcamp(id: ID!, bootcampInput: bootcampInputData): Bootcamp!
     deleteBootcamp(id: ID!): Boolean
+    createUser(userInput: userInputData): User!
   }
 
   """Schema"""

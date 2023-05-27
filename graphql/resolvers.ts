@@ -57,4 +57,17 @@ export default {
 			console.log(err);
 		}
 	},
+	createUser: async (args: any, req: Request) => {
+		try {
+			const user = new db.User({
+				name: args.userInput.name,
+				email: args.userInput.email,
+				password: args.userInput.password,
+			});
+			const newUser = await user.save();
+			return newUser;
+		} catch (err) {
+			console.log(err);
+		}
+	},
 };
