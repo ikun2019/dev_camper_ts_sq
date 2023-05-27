@@ -32,4 +32,16 @@ export default {
 			console.log(err);
 		}
 	},
+	deleteBootcamp: async (args: any, req: Request) => {
+		try {
+			const bootcampId = args.id;
+			const bootcamp = await db.Bootcamp.findOne({
+				where: { id: bootcampId },
+			});
+			await bootcamp.destroy();
+			return true;
+		} catch (err) {
+			console.log(err);
+		}
+	},
 };

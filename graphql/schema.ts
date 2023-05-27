@@ -20,6 +20,7 @@ export default buildSchema(`
   }
   type RootMutation {
     createBootcamp(bootcampInput: bootcampInputData): Bootcamp!
+    deleteBootcamp(id: ID!): Boolean
   }
 
   """Schema"""
