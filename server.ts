@@ -15,8 +15,11 @@ app.use(
 	})
 );
 
-db.sequelize.sync().then(() => {
-	app.listen(port, () => {
-		console.log('Running!');
+db.sequelize
+	// .sync({ force: true })
+	.sync()
+	.then(() => {
+		app.listen(port, () => {
+			console.log('Running!');
+		});
 	});
-});
