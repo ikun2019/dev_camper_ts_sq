@@ -65,7 +65,33 @@ export default {
 				password: args.userInput.password,
 			});
 			const newUser = await user.save();
-			return newUser;
+			const token = user.getSignedJwtToken();
+			return {
+				token,
+				...newUser.dataValues,
+				user: newUser,
+			};
+		} catch (err) {
+			console.log(err);
+		}
+	},
+	loginUser: async (args: any, req: Request) => {
+		try {
+			const user = await db.User.findOne({
+				where: { email: args.email },
+			});
+			if (!user) {
+				throw new Error('ユーザーが存在しません');
+			}
+			const isMatch = await user.comparePassword(args.password);
+			if (!isMatch) {
+				throw new Error('パスワードが一致しません');
+			}
+			const token = user.getSignedJwtToken();
+			return {
+				token,
+				user,
+			};
 		} catch (err) {
 			console.log(err);
 		}

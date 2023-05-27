@@ -12,6 +12,10 @@ export default buildSchema(`
     email: String!
     password: String!
   }
+  type AuthData {
+    token: String!
+    user: User!
+  }
   
   """Input Data"""
   input bootcampInputData {
@@ -32,7 +36,8 @@ export default buildSchema(`
     createBootcamp(bootcampInput: bootcampInputData): Bootcamp!
     updateBootcamp(id: ID!, bootcampInput: bootcampInputData): Bootcamp!
     deleteBootcamp(id: ID!): Boolean
-    createUser(userInput: userInputData): User!
+    createUser(userInput: userInputData): AuthData!
+    loginUser(email: String!, password: String!): AuthData!
   }
 
   """Schema"""
